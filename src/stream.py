@@ -1,11 +1,18 @@
-from reboundpy.models import HandshakeMessage, ConnectMessage, SubscribeMessage
-import reboundpy.constants as constants
+import re
+import json
+import asyncio
+
+from src.models import HandshakeMessage, ConnectMessage, SubscribeMessage
+from src.http import fetch_url
+import src.constants as constants
+
+import websockets
 
 class LiveStreamStats:
     def __init__(self, sports_code, game_id):
         self._sports_code = sports_code
         self._game_id = game_id
-        response = _fetch_url(
+        response = fetch_url(
             f"{constants.BASE_STATS_URL}/{self._game_id}/box_score"
         )
         match = re.search(
@@ -51,6 +58,7 @@ class LiveStreamStats:
         while True:
             async for message in websocket:
                 message = json.loads(message)
+                print(message)
 
     async def stream(self):
         async for websocket in websockets.connect(

@@ -4,3 +4,5 @@ USER_AGENT = (
 )
 
 BASE_STATS_URL = "https://stats.ncaa.org/contests/livestream_scoreboards"
+
+WEBSOCKET_REFRESH_SEC = 25

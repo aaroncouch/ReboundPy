@@ -1,9 +1,9 @@
 import asyncio
 import argparse
 
-from reboundpy.stream import LiveStreamStats
+from src.stream import LiveStreamStats
 
-async def main():
+def main():
     parser = argparse.ArgumentParser(
         description="Simple CLI tool for getting NCAA Basketball game stats."
     )
@@ -24,3 +24,6 @@ async def main():
 
     stats = LiveStreamStats(args.sports_code, args.game_id)
     asyncio.run(stats.stream())
+
+if __name__ == '__main__':
+    main()

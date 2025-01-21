@@ -3,8 +3,9 @@ from typing import Optional
 import requests
 from requests import Session, Response
 from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
-import reboundpy.constants as constants
+import src.constants as constants
 
 def fetch_url(
     url: str,
